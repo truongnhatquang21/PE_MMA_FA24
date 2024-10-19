@@ -1,8 +1,10 @@
+import DrawerCus from '@/components/Drawer';
 import { queryClient } from '@/contexts/QueryClientProvider';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
+import Drawer from 'expo-router/drawer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Drawer } from 'expo-router/drawer';
+
 export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -14,13 +16,22 @@ export default function RootLayout() {
             options={{
               title: 'Details',
               headerBackTitleVisible: false,
+              headerRight: () => <DrawerCus />,
             }}
           />
           <Stack.Screen
             name='search'
             options={{
-              title: 'Details',
+              title: 'Search',
               headerBackTitleVisible: false,
+              headerRight: () => <DrawerCus />,
+            }}
+          />
+          <Stack.Screen
+            name='modal'
+            options={{
+              presentation: 'modal',
+              title: 'More',
             }}
           />
         </Stack>

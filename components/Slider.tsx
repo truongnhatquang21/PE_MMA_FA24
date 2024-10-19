@@ -42,6 +42,7 @@ export default function Slider() {
       }}
     >
       <Carousel
+        mode='parallax'
         width={width}
         height={100}
         data={brandList}

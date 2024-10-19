@@ -11,8 +11,6 @@ export default function Index() {
     queryFn: getItemList,
   });
 
-  console.log(error, 'ds');
-
   return (
     <View
       style={{

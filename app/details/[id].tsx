@@ -1,5 +1,6 @@
 import { getItem } from '@/apis/item';
 import Loading from '@/components/ActivityIndicator';
+import Feedback from '@/components/Feedback';
 import LikeButton from '@/components/LikeButton';
 import RatingComponent from '@/components/Rating';
 import { Item } from '@/types/items';
@@ -16,8 +17,8 @@ type Props = {
 const Details = () => {
   const params = useLocalSearchParams();
   const { data, isLoading, error } = useQuery({
-    queryKey: ['item', params.id],
-    queryFn: () => getItem(params.id as string),
+    queryKey: ['item', params?.id],
+    queryFn: () => getItem(params?.id as string),
   });
   return (
     <View
@@ -156,8 +157,16 @@ const Details = () => {
               {data?.data?.limitedTimeDeal}%
             </Text>
           </View>
+          <View
+            style={{
+              marginTop: 10,
+              borderTopColor: 'gray',
+              borderTopWidth: 2,
+            }}
+          ></View>
         </View>
       )}
+      <Feedback />
     </View>
   );
 };

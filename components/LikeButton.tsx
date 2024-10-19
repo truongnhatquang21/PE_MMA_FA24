@@ -14,8 +14,8 @@ type Props = {
 
 const LikeButton: FC<Props> = ({ item }) => {
   const { data, refetch } = useQuery({
-    queryKey: ['isLiked', item.id],
-    queryFn: () => isExistItemInAsyncStorage(item.id),
+    queryKey: ['isLiked', item?.id],
+    queryFn: () => isExistItemInAsyncStorage(item?.id),
   });
   const queryClient = useQueryClient();
   return (
