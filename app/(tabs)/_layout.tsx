@@ -1,5 +1,5 @@
-import { Tabs } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Tabs } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
   return (
@@ -9,12 +9,12 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name='index'
+        name="index"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? 'home-sharp' : 'home-outline'}
+              name={focused ? "home-sharp" : "home-outline"}
               color={color}
               size={24}
             />
@@ -22,12 +22,26 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='loved'
+        name="loved"
         options={{
-          title: 'My Favorites',
+          title: "My Favorites",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? 'heart-circle' : 'heart-circle-outline'}
+              name={focused ? "heart-circle" : "heart-circle-outline"}
+              color={color}
+              size={24}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="special"
+        options={{
+          title: "Special items",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "diamond" : "diamond-outline"}
               color={color}
               size={24}
             />

@@ -1,14 +1,15 @@
-import { getItem } from '@/apis/item';
-import Loading from '@/components/ActivityIndicator';
-import Feedback from '@/components/Feedback';
-import LikeButton from '@/components/LikeButton';
-import RatingComponent from '@/components/Rating';
-import { Item } from '@/types/items';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { useQuery } from '@tanstack/react-query';
-import { useLocalSearchParams, usePathname, useSegments } from 'expo-router';
-import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { getItem } from "@/apis/item";
+import Loading from "@/components/ActivityIndicator";
+import Feedback from "@/components/Feedback";
+import LikeButton from "@/components/LikeButton";
+import RatingComponent from "@/components/Rating";
+import { Item } from "@/types/items";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useQuery } from "@tanstack/react-query";
+import { useLocalSearchParams, usePathname, useSegments } from "expo-router";
+import React from "react";
+import { Image, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 type Props = {
   route: any;
@@ -17,11 +18,11 @@ type Props = {
 const Details = () => {
   const params = useLocalSearchParams();
   const { data, isLoading, error } = useQuery({
-    queryKey: ['item', params?.id],
+    queryKey: ["item", params?.id],
     queryFn: () => getItem(params?.id as string),
   });
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
       }}
@@ -37,34 +38,34 @@ const Details = () => {
           <Text
             style={{
               fontSize: 24,
-              fontWeight: 'bold',
-              color: 'black',
+              fontWeight: "bold",
+              color: "black",
             }}
           >
             {data?.data?.artName}
           </Text>
           <View
             style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              position: 'relative',
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              position: "relative",
             }}
           >
             <Image
               source={{ uri: data?.data?.image }}
               style={{
-                width: '100%',
+                width: "100%",
                 height: 300,
                 borderRadius: 8,
-                shadowColor: '#000',
+                shadowColor: "#000",
                 shadowOffset: { width: 8, height: 2 },
               }}
             />
             {data?.data.glassSurface && (
               <View
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   top: 10,
                   left: 10,
                 }}
@@ -72,20 +73,20 @@ const Details = () => {
                 <Text
                   style={{
                     fontSize: 30,
-                    color: 'gray',
+                    color: "gray",
                     gap: 2,
                   }}
                 >
                   <Ionicons
-                    name={'checkmark-circle'}
-                    color={'green'}
+                    name={"checkmark-circle"}
+                    color={"green"}
                     size={50}
                   />
                 </Text>
 
                 <Text
                   style={{
-                    color: 'gray',
+                    color: "gray",
                   }}
                 >
                   Glassed
@@ -94,7 +95,7 @@ const Details = () => {
             )}
           </View>
           <View
-            style={{ flexDirection: 'row', justifyContent: 'space-around' }}
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
           >
             <RatingComponent />
             <LikeButton item={data?.data as Item} />
@@ -102,22 +103,22 @@ const Details = () => {
           <Text
             style={{
               fontSize: 16,
-              color: 'gray',
+              color: "gray",
             }}
           >
             {data?.data?.description}
           </Text>
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
             <Text
               style={{
                 fontSize: 40,
-                fontWeight: 'bold',
+                fontWeight: "bold",
                 borderRadius: 9999,
               }}
             >
@@ -126,7 +127,7 @@ const Details = () => {
             <Text
               style={{
                 fontSize: 14,
-                color: 'gray',
+                color: "gray",
               }}
             >
               {data?.data?.brand}
@@ -134,16 +135,16 @@ const Details = () => {
           </View>
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
+              flexDirection: "row",
+              justifyContent: "center",
               gap: 10,
-              alignItems: 'center',
+              alignItems: "center",
             }}
           >
             <Text
               style={{
                 fontSize: 16,
-                color: 'gray',
+                color: "gray",
               }}
             >
               Limited time deal:
@@ -151,7 +152,7 @@ const Details = () => {
             <Text
               style={{
                 fontSize: 16,
-                color: 'gray',
+                color: "gray",
               }}
             >
               {data?.data?.limitedTimeDeal}%
@@ -160,14 +161,20 @@ const Details = () => {
           <View
             style={{
               marginTop: 10,
-              borderTopColor: 'gray',
+              borderTopColor: "gray",
               borderTopWidth: 2,
             }}
           ></View>
         </View>
       )}
-      <Feedback />
-    </View>
+      <View
+        style={{
+          padding: 10,
+        }}
+      >
+        <Feedback />
+      </View>
+    </ScrollView>
   );
 };
 
